@@ -25,3 +25,14 @@ LIMIT 5;
 SELECT seminar3.staff.post AS "Должность", SUM(seminar3.staff.salary) AS "Сумма з/п"
 FROM seminar3.staff
 GROUP BY post;
+
+-- Найти кол-во сотрудников со специальностью Рабочий в возрасте от 24 до 49 лет включительно
+SELECT COUNT(*) AS "Рабочих в возрасте от 24 до 49 лет"
+FROM seminar3.staff
+WHERE post = "Рабочий" AND (age >= 24 AND age <= 49);
+
+-- Найти кол-во специальностей
+SELECT COUNT(DISTINCT seminar3.staff.post) AS "Специальностей"
+FROM seminar3.staff;
+
+-- Выведите специальности у которых средний возраст сотрудников меньше 30 лет
