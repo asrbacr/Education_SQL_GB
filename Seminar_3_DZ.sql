@@ -36,3 +36,8 @@ SELECT COUNT(DISTINCT seminar3.staff.post) AS "Специальностей"
 FROM seminar3.staff;
 
 -- Выведите специальности у которых средний возраст сотрудников меньше 30 лет
+SELECT seminar3.staff.post, AVG(age)
+FROM seminar3.staff
+GROUP BY post
+HAVING AVG(age) <= 30;
+-- Сделал включительно, потому что иначе в результате 0 строк
