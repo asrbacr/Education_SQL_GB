@@ -18,3 +18,10 @@ FROM users
 JOIN messages ON messages.from_user_id = users.id
 GROUP BY users.id
 ORDER BY COUNT(users.id) DESC;
+
+/* Выберите все сообщения, отсортируйте сообщения по возрастанию даты отправления
+(created_at) и найдите разницу дат отправления между соседними сообщениями, получившегося
+списка. (используйте LEAD или LAG) */
+SELECT from_user_id, to_user_id, created_at, body,
+    LEAD (created_at) OVER (ORDER BY created_at ASC) next_mess
+FROM messages;
