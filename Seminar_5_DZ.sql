@@ -11,9 +11,10 @@ WHERE 20 >= TIMESTAMPDIFF(YEAR, birthday, CURDATE());
 
 /* Найдите кол-во, отправленных сообщений каждым пользователем и выведите ранжированный список пользователей, 
 указав имя и фамилию пользователя, количество отправленных сообщений и 
-место в рейтинге (первое место у пользователя с максимальным количеством сообщений). 
-(используйте DENSE_RANK) */
-SELECT lastname, firstname, DENSE_RANK() OVER() 
+место в рейтинге (первое место у пользователя с максимальным количеством сообщений). */
+SELECT lastname, firstname,
+    COUNT(users.id) AS "Кол-во отправленных сообщений"
 FROM users
 JOIN messages ON messages.from_user_id = users.id
-;
+GROUP BY users.id
+ORDER BY COUNT(users.id) DESC;
